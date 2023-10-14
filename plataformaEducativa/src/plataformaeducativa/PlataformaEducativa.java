@@ -6,7 +6,7 @@ package plataformaeducativa;
 
 /**
  *
- * @author WALTER
+ * @author WALTER & VICENTE
  */
 public class PlataformaEducativa {
 
