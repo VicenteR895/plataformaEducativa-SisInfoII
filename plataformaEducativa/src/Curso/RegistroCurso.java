@@ -4,6 +4,8 @@
  */
 package Curso;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Stefan2
@@ -15,6 +17,9 @@ public class RegistroCurso extends javax.swing.JFrame {
      */
     public RegistroCurso() {
         initComponents();
+        validacionNombre.setVisible(false);
+        validacionCodigoCurso.setVisible(false);
+        validacionGestiónCurso.setVisible(false);
     }
 
     /**
@@ -37,6 +42,9 @@ public class RegistroCurso extends javax.swing.JFrame {
         inputGestión = new javax.swing.JTextField();
         inputDescripcionCurso = new javax.swing.JTextField();
         botonRegCurso = new javax.swing.JButton();
+        validacionNombre = new javax.swing.JLabel();
+        validacionCodigoCurso = new javax.swing.JLabel();
+        validacionGestiónCurso = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -90,36 +98,19 @@ public class RegistroCurso extends javax.swing.JFrame {
             }
         });
 
+        validacionNombre.setForeground(new java.awt.Color(255, 102, 102));
+        validacionNombre.setText("validación nombre curso");
+
+        validacionCodigoCurso.setForeground(new java.awt.Color(255, 102, 102));
+        validacionCodigoCurso.setText("validación código curso");
+
+        validacionGestiónCurso.setForeground(new java.awt.Color(255, 102, 102));
+        validacionGestiónCurso.setText("validación gestión curso ");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(inputCódigoCurso))
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(inputNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(inputDescripcionCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                            .addComponent(inputGestión))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(52, 52, 52))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -129,6 +120,38 @@ public class RegistroCurso extends javax.swing.JFrame {
                         .addGap(177, 177, 177)
                         .addComponent(jLabel1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(validacionGestiónCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(inputDescripcionCurso)
+                            .addComponent(inputGestión, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(validacionCodigoCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(inputCódigoCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(validacionNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(inputNombreCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addGap(37, 37, 37))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,15 +164,21 @@ public class RegistroCurso extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(inputNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(2, 2, 2)
+                .addComponent(validacionNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(inputCódigoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(34, 34, 34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validacionCodigoCurso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(inputGestión, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
+                .addGap(2, 2, 2)
+                .addComponent(validacionGestiónCurso)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(inputDescripcionCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -178,7 +207,61 @@ public class RegistroCurso extends javax.swing.JFrame {
     }//GEN-LAST:event_inputDescripcionCursoActionPerformed
 
     private void botonRegCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegCursoActionPerformed
-        // TODO add your handling code here:
+        // Get the input values from the fields
+        String nombreCurso = inputNombreCurso.getText();
+        String codigoCurso = inputCódigoCurso.getText();
+        String gestion = inputGestión.getText();
+        String descripcionCurso = inputDescripcionCurso.getText();
+        validacionNombre.setVisible(false);
+        validacionCodigoCurso.setVisible(false);
+        validacionGestiónCurso.setVisible(false);
+        // Perform input validations
+        boolean isValid = true;
+
+        if (!nombreCurso.matches("^[a-zA-Z0-9]+$")) {
+            /*JOptionPane.showMessageDialog(this, "Nombre del curso solo debe 
+            contener números y letras");*/
+            validacionNombre.setVisible(true);
+            validacionNombre.setText("Nombre del curso solo debe contener "
+                    + "números y letras");
+            isValid = false;
+        }
+
+        /*if (nombreCurso.isEmpty()) {
+            validacionNombre.setVisible(true);
+            validacionNombre.setText("Nombre del curso es requerido, "
+                    + "no puede ser vacío.");
+            isValid = false;
+        }*/
+
+        if (!codigoCurso.matches("^[0-9]+$")) {
+            validacionCodigoCurso.setVisible(true);
+            /*JOptionPane.showMessageDialog(this, "Código del curso solo"
+                    + "debe contener números.");*/
+            validacionCodigoCurso.setText("Código del curso solo "
+                    + "debe contener números.");
+            isValid = false;
+        }
+
+        if (!gestion.matches("^[0-9-]+$")) {
+            validacionGestiónCurso.setVisible(true);
+            validacionGestiónCurso.setText("Gestión solo debe tener números "
+                    + "y símbolo '-'.");
+            /*JOptionPane.showMessageDialog(this, "Gestión solo debe tener números "
+                    + "y símbolo '-'. Nopuede ser campo vacío");*/
+            isValid = false;
+        }
+
+        // Espacio reservado por si quiero validar descripción
+        /*if (!descripcionCurso.matches("Patrón o expresión validar")) {
+        JOptionPane.showMessageDialog(this, "Descripción inválida.");
+        isValid = false;
+        }
+         */
+        if (isValid) {
+            /* Si mis Inputs o entradas son válidas ejecuto mi acción 
+             para código futuro, p.e. cuando guarde o envie mis datos al servidor*/
+        }
     }//GEN-LAST:event_botonRegCursoActionPerformed
 
     /**
@@ -228,5 +311,8 @@ public class RegistroCurso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel validacionCodigoCurso;
+    private javax.swing.JLabel validacionGestiónCurso;
+    private javax.swing.JLabel validacionNombre;
     // End of variables declaration//GEN-END:variables
 }
