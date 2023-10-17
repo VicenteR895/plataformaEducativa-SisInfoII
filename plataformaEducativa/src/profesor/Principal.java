@@ -1,4 +1,4 @@
-package form;
+package profesor;
 
 import config.Conexion;
 import java.sql.*;
