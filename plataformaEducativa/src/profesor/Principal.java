@@ -36,7 +36,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtId = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtCedula = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
@@ -78,8 +77,6 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("NOMBRE:");
-
-        txtId.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel6.setText("CEDULA DE IDENTIDAD :");
@@ -144,13 +141,10 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1)
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGap(105, 105, 105)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(105, 105, 105)
-                                    .addComponent(txtId, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -167,8 +161,6 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -176,7 +168,6 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtId)
                     .addComponent(jLabel1)
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -187,7 +178,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtCedula, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -291,7 +282,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
                 .addComponent(btnModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 122, Short.MAX_VALUE)
                 .addComponent(btnEliminar)
                 .addGap(123, 123, 123)
                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -318,7 +309,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -371,7 +362,7 @@ public class Principal extends javax.swing.JFrame {
             id = Integer.parseInt((String) TablaDatos.getValueAt(row, 0).toString());
             String nom = (String) TablaDatos.getValueAt(row, 1);
             String valor = (String) TablaDatos.getValueAt(row, 2);
-            txtId.setText("" + id);
+            txtID.setText("" + id);
             txtApellido.setText(valor);
             txtNombre.setText(nom);
 
@@ -466,52 +457,75 @@ public class Principal extends javax.swing.JFrame {
 
     void Agregar() {
     try {
-        int id = Integer.parseInt(txtID.getText()); 
+        int id = Integer.parseInt(txtID.getText());
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
-        int ci = Integer.parseInt(txtCedula.getText()); 
+        int ci = Integer.parseInt(txtCedula.getText());
         String correo = txtCorreo.getText();
         String direccion = txtDireccion.getText();
-        int telefono = Integer.parseInt(txtTelefono.getText()); 
+        int telefono = Integer.parseInt(txtTelefono.getText());
         String fechaNacimiento = txtFecha.getText();
-        
+
         if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || fechaNacimiento.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Debe Ingresar Datos en todos los campos obligatorios");
         } else if (!isValidEmail(correo)) {
             JOptionPane.showMessageDialog(null, "Correo electrónico no válido. Ingrese una dirección de correo válida.");
         } else {
-            // Validación adicional, por ejemplo, para asegurarse de que el CI y el teléfono sean números válidos
             if (ci <= 0 || telefono <= 0) {
                 JOptionPane.showMessageDialog(null, "El CI y el teléfono deben ser números válidos.");
             } else {
-                String sql = "INSERT INTO PROFESOR(IDPROFESOR, NOMBREPROFESOR, APELLIDOPROFESOR, CIPROFESOR, CORREOPROFESOR, DIRECCIONPROFESOR, TELEFONOPROFESOR, FECHANACIMIENTOPROFESOR) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-                
-                con = cn.getConnection();
-                PreparedStatement pst = con.prepareStatement(sql);
-                pst.setInt(1, id);
-                pst.setString(2, nombre);
-                pst.setString(3, apellido);
-                pst.setInt(4, ci);
-                pst.setString(5, correo);
-                pst.setString(6, direccion);
-                pst.setInt(7, telefono);
-                pst.setString(8, fechaNacimiento);
-
-                int rowsInserted = pst.executeUpdate();
-                if (rowsInserted > 0) {
-                    JOptionPane.showMessageDialog(null, "Profesor Registrado con Éxito");
-                    limpiarTabla(model);
+                // Verificar si el ID ya existe en la base de datos
+                if (idAlreadyExists(id)) {
+                    JOptionPane.showMessageDialog(null, "El ID ya existe. Ingrese un ID diferente.");
                 } else {
-                    JOptionPane.showMessageDialog(null, "Error al insertar datos.");
+                    String sql = "INSERT INTO PROFESOR(IDPROFESOR, NOMBREPROFESOR, APELLIDOPROFESOR, CIPROFESOR, CORREOPROFESOR, DIRECCIONPROFESOR, TELEFONOPROFESOR, FECHANACIMIENTOPROFESOR) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+                    con = cn.getConnection();
+                    PreparedStatement pst = con.prepareStatement(sql);
+                    pst.setInt(1, id);
+                    pst.setString(2, nombre);
+                    pst.setString(3, apellido);
+                    pst.setInt(4, ci);
+                    pst.setString(5, correo);
+                    pst.setString(6, direccion);
+                    pst.setInt(7, telefono);
+                    pst.setString(8, fechaNacimiento);
+
+                    int rowsInserted = pst.executeUpdate();
+                    if (rowsInserted > 0) {
+                        JOptionPane.showMessageDialog(null, "Profesor Registrado con Éxito");
+                        txtID.setText("");
+                        txtNombre.setText("");
+                        txtApellido.setText("");
+                        txtCedula.setText("");
+                        txtCorreo.setText("");
+                        txtDireccion.setText("");
+                        txtTelefono.setText("");
+                        txtFecha.setText("");
+                        limpiarTabla(model);                    
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Error al insertar datos.");
+                    }
                 }
             }
         }
     } catch (NumberFormatException e) {
         JOptionPane.showMessageDialog(null, "Asegúrate de ingresar números válidos para el CI y el teléfono.");
     } catch (Exception e) {
-        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
+        e.printStackTrace();
     }
 }
+
+// Método para verificar si el ID ya existe en la base de datos
+private boolean idAlreadyExists(int id) throws SQLException {
+    String sql = "SELECT IDPROFESOR FROM PROFESOR WHERE IDPROFESOR = ?";
+    con = cn.getConnection();
+    PreparedStatement pst = con.prepareStatement(sql);
+    pst.setInt(1, id);
+    ResultSet resultSet = pst.executeQuery();
+    return resultSet.next(); // Retorna true si el ID ya existe, de lo contrario, false
+}
+
 
 // Función para validar el formato del correo electrónico utilizando una expresión regular
 boolean isValidEmail(String email) {
@@ -561,10 +575,10 @@ boolean isValidEmail(String email) {
     }
 
     void nuevo() {
-        txtId.setText("");
-        txtApellido.setText("");
-        txtNombre.setText("");
-        txtApellido.requestFocus();
+        //txtID.setText("");
+        //txtApellido.setText("");
+        //txtNombre.setText("");
+        //txtApellido.requestFocus();
     }
 
     void limpiarTabla(DefaultTableModel model) {
@@ -606,7 +620,6 @@ boolean isValidEmail(String email) {
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtID;
-    private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
