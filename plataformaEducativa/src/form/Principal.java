@@ -47,6 +47,7 @@ public class Principal extends javax.swing.JFrame {
         txtTelefono = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         txtFecha = new javax.swing.JTextField();
+        txtID = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaDatos = new javax.swing.JTable();
@@ -78,7 +79,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("NOMBRE:");
 
-        txtId.setEditable(false);
         txtId.setEnabled(false);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -167,6 +167,8 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -175,7 +177,8 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtId)
-                    .addComponent(jLabel1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -288,7 +291,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(78, 78, 78)
                 .addComponent(btnModificar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEliminar)
                 .addGap(123, 123, 123)
                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -315,7 +318,7 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(14, Short.MAX_VALUE))
+                .addContainerGap(9, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -435,19 +438,24 @@ public class Principal extends javax.swing.JFrame {
     }
 
     void listar() {
-        String sql = "select * from datosProfesor";
+        String sql = "select * from PROFESOR";
         try {
             con = cn.getConnection();
             st = con.createStatement();
             rs = st.executeQuery(sql);
-            Object[] datosProfesor = new Object[3];
+            Object[] PROFESOR = new Object[8];
    
             model = (DefaultTableModel) TablaDatos.getModel();
             while (rs.next()) {
-                datosProfesor[0] = rs.getInt("id");
-                datosProfesor[1] = rs.getString("nombreProfesor");
-                datosProfesor[2] = rs.getString("apellidoProfesor");
-                model.addRow(datosProfesor);
+                PROFESOR[0] = rs.getInt("IDPROFESOR");
+                PROFESOR[1] = rs.getString("NOMBREPROFESOR");
+                PROFESOR[2] = rs.getString("APELLIDOPROFESOR");
+                PROFESOR[3] = rs.getInt("CIPROFESOR");
+                PROFESOR[4] = rs.getString("CORREOPROFESOR");
+                PROFESOR[5] = rs.getString("DIRECCIONPROFESOR");
+                PROFESOR[6] = rs.getInt("TELEFONOPROFESOR");
+                PROFESOR[7] = rs.getDate("FECHANACIMIENTOPROFESOR");
+                model.addRow(PROFESOR);
             }
             TablaDatos.setModel(model);
 
@@ -457,32 +465,64 @@ public class Principal extends javax.swing.JFrame {
     }
 
     void Agregar() {
+    try {
+        int id = Integer.parseInt(txtID.getText()); 
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
-        try {
-            if (nombre.equals("") || apellido.equals("")) {
-                JOptionPane.showMessageDialog(null, "Debe Ingresar Datos");
-                limpiarTabla(model);               
+        int ci = Integer.parseInt(txtCedula.getText()); 
+        String correo = txtCorreo.getText();
+        String direccion = txtDireccion.getText();
+        int telefono = Integer.parseInt(txtTelefono.getText()); 
+        String fechaNacimiento = txtFecha.getText();
+        
+        if (nombre.isEmpty() || apellido.isEmpty() || correo.isEmpty() || direccion.isEmpty() || fechaNacimiento.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Debe Ingresar Datos en todos los campos obligatorios");
+        } else if (!isValidEmail(correo)) {
+            JOptionPane.showMessageDialog(null, "Correo electrónico no válido. Ingrese una dirección de correo válida.");
+        } else {
+            // Validación adicional, por ejemplo, para asegurarse de que el CI y el teléfono sean números válidos
+            if (ci <= 0 || telefono <= 0) {
+                JOptionPane.showMessageDialog(null, "El CI y el teléfono deben ser números válidos.");
             } else {
-                String sql = "insert into datosProfesor(nombreProfesor,apellidoProfesor) values('" + nombre + "','" + apellido + "')";
-                con = cn.getConnection();
-                st = con.createStatement();
-                st.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null, "Profesor Registrado con Exito");
-                limpiarTabla(model);
+                String sql = "INSERT INTO PROFESOR(IDPROFESOR, NOMBREPROFESOR, APELLIDOPROFESOR, CIPROFESOR, CORREOPROFESOR, DIRECCIONPROFESOR, TELEFONOPROFESOR, FECHANACIMIENTOPROFESOR) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
                 
-            }
+                con = cn.getConnection();
+                PreparedStatement pst = con.prepareStatement(sql);
+                pst.setInt(1, id);
+                pst.setString(2, nombre);
+                pst.setString(3, apellido);
+                pst.setInt(4, ci);
+                pst.setString(5, correo);
+                pst.setString(6, direccion);
+                pst.setInt(7, telefono);
+                pst.setString(8, fechaNacimiento);
 
-        } catch (Exception e) {
+                int rowsInserted = pst.executeUpdate();
+                if (rowsInserted > 0) {
+                    JOptionPane.showMessageDialog(null, "Profesor Registrado con Éxito");
+                    limpiarTabla(model);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Error al insertar datos.");
+                }
+            }
         }
-        
-        
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Asegúrate de ingresar números válidos para el CI y el teléfono.");
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, "Error: " + e.getMessage());
     }
+}
+
+// Función para validar el formato del correo electrónico utilizando una expresión regular
+boolean isValidEmail(String email) {
+    String regex = "^[A-Za-z0-9+_.-]+@(.+)$";
+    return email.matches(regex);
+}
 
     void Modificar() {
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
-        String sql = "update datosProfesor set apellidoProfesor='" + apellido + "',nombreProfesor='" + nombre + "' where id=" + id;
+        String sql = "update PROFESOR set apellidoProfesor='" + apellido + "',nombreProfesor='" + nombre + "' where id=" + id;
         try {
             if (apellido != null || nombre != null) {
                 con = cn.getConnection();
@@ -501,7 +541,7 @@ public class Principal extends javax.swing.JFrame {
     }
 
     void Eliminar() {
-        String sql = "delete from datosProfesor where id=" + id;        
+        String sql = "delete from PROFESOR where id=" + id;        
         int fila = TablaDatos.getSelectedRow();
         if (fila < 0) {
             JOptionPane.showMessageDialog(null,"Profesor no Seleccionado");
@@ -565,6 +605,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtID;
     private javax.swing.JTextField txtId;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtTelefono;

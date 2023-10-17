@@ -9,7 +9,7 @@ public class Conexion {
     public Conexion(){
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            con=DriverManager.getConnection("jdbc:mysql://containers-us-west-181.railway.app:6174/railway","root","FP4VOMbf4BRa25UaIMzq");
+            con=DriverManager.getConnection("jdbc:mysql://containers-us-west-171.railway.app:7811/railway","root","wr1x3fvXpPYsBrnwhser");
         } catch (Exception e) {
             System.err.println("Error:"+e);
         }        
