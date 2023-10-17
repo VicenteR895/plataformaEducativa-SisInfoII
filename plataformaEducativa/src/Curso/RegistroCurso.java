@@ -62,28 +62,24 @@ public class RegistroCurso extends javax.swing.JFrame {
 
         jLabel6.setText("Descripción:");
 
-        inputNombreCurso.setText("Ingrese el nombre del curso");
         inputNombreCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputNombreCursoActionPerformed(evt);
             }
         });
 
-        inputCódigoCurso.setText("Ingrese el código del curso");
         inputCódigoCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputCódigoCursoActionPerformed(evt);
             }
         });
 
-        inputGestión.setText("Ingrese la gestión del curso");
         inputGestión.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputGestiónActionPerformed(evt);
             }
         });
 
-        inputDescripcionCurso.setText("Ingrese una descripción del curso");
         inputDescripcionCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 inputDescripcionCursoActionPerformed(evt);
@@ -218,7 +214,7 @@ public class RegistroCurso extends javax.swing.JFrame {
         // Perform input validations
         boolean isValid = true;
 
-        if (!nombreCurso.matches("^[a-zA-Z0-9]+$")) {
+        if (nombreCurso.isEmpty() || !nombreCurso.matches("^[a-zA-Z0-9 ]+$")) {
             /*JOptionPane.showMessageDialog(this, "Nombre del curso solo debe 
             contener números y letras");*/
             validacionNombre.setVisible(true);
@@ -233,8 +229,7 @@ public class RegistroCurso extends javax.swing.JFrame {
                     + "no puede ser vacío.");
             isValid = false;
         }*/
-
-        if (!codigoCurso.matches("^[0-9]+$")) {
+        if (!codigoCurso.matches("^[0-9 ]+$")) {
             validacionCodigoCurso.setVisible(true);
             /*JOptionPane.showMessageDialog(this, "Código del curso solo"
                     + "debe contener números.");*/
@@ -243,7 +238,7 @@ public class RegistroCurso extends javax.swing.JFrame {
             isValid = false;
         }
 
-        if (!gestion.matches("^[0-9-]+$")) {
+        if (!gestion.matches("^[0-9- ]+$")) {
             validacionGestiónCurso.setVisible(true);
             validacionGestiónCurso.setText("Gestión solo debe tener números "
                     + "y símbolo '-'.");
@@ -258,6 +253,24 @@ public class RegistroCurso extends javax.swing.JFrame {
         isValid = false;
         }
          */
+        if (nombreCurso.trim().isEmpty()) {
+            validacionNombre.setVisible(true);
+            validacionNombre.setText("Nombre del curso es requerido, no puede ser vacío.");
+            isValid = false;
+        }
+
+        if (codigoCurso.trim().isEmpty()) {
+            validacionCodigoCurso.setVisible(true);
+            validacionCodigoCurso.setText("Código del curso es requerido, no puede ser vacío.");
+            isValid = false;
+        }
+
+        if (gestion.trim().isEmpty()) {
+            validacionGestiónCurso.setVisible(true);
+            validacionGestiónCurso.setText("Gestión es requerida, no puede ser vacía.");
+            isValid = false;
+        }
+
         if (isValid) {
             /* Si mis Inputs o entradas son válidas ejecuto mi acción 
              para código futuro, p.e. cuando guarde o envie mis datos al servidor*/

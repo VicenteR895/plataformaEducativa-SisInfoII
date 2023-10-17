@@ -161,33 +161,21 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="inputNombreCurso">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese el nombre del curso"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputNombreCursoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="inputC&#xf3;digoCurso">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese el c&#xf3;digo del curso"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputC&#xf3;digoCursoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="inputGesti&#xf3;n">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese la gesti&#xf3;n del curso"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputGesti&#xf3;nActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="inputDescripcionCurso">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Ingrese una descripci&#xf3;n del curso"/>
-      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputDescripcionCursoActionPerformed"/>
       </Events>
