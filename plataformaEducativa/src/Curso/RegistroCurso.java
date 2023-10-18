@@ -26,6 +26,7 @@ public class RegistroCurso extends javax.swing.JFrame {
         validacionNombre.setVisible(false);
         validacionCodigoCurso.setVisible(false);
         validacionGestiónCurso.setVisible(false);
+        validacionIDCurso.setVisible(false);
     }
     Conexion myConecction = new Conexion();
     Connection conecction;
@@ -53,6 +54,9 @@ public class RegistroCurso extends javax.swing.JFrame {
         validacionNombre = new javax.swing.JLabel();
         validacionCodigoCurso = new javax.swing.JLabel();
         validacionGestiónCurso = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        validacionIDCurso = new javax.swing.JLabel();
+        inputIdCurso = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -111,6 +115,17 @@ public class RegistroCurso extends javax.swing.JFrame {
         validacionGestiónCurso.setForeground(new java.awt.Color(255, 102, 102));
         validacionGestiónCurso.setText("validación gestión curso ");
 
+        jLabel7.setText("*Identificador del Curso:");
+
+        validacionIDCurso.setForeground(new java.awt.Color(255, 102, 102));
+        validacionIDCurso.setText("validación id curso");
+
+        inputIdCurso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputIdCursoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -118,44 +133,41 @@ public class RegistroCurso extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
-                        .addComponent(botonRegCurso))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(177, 177, 177)
-                        .addComponent(jLabel1)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(validacionGestiónCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(inputDescripcionCurso)
-                            .addComponent(inputGestión, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(validacionCodigoCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(inputCódigoCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 433, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(validacionGestiónCurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(inputDescripcionCurso)
+                                        .addComponent(inputGestión, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(validacionNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(inputNombreCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE))))
-                                .addGap(0, 0, Short.MAX_VALUE)))))
-                .addGap(37, 37, 37))
+                                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(validacionNombre, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(inputNombreCurso, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                        .addComponent(inputCódigoCurso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 288, Short.MAX_VALUE)
+                                        .addComponent(validacionCodigoCurso, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(inputIdCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(validacionIDCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 288, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(175, 175, 175)
+                        .addComponent(botonRegCurso)))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,32 +175,38 @@ public class RegistroCurso extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(inputNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
-                .addComponent(validacionNombre)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(inputIdCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validacionIDCurso)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(inputNombreCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3))
+                .addGap(4, 4, 4)
+                .addComponent(validacionNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(inputCódigoCurso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validacionCodigoCurso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(inputGestión, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(validacionGestiónCurso)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(inputDescripcionCurso, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(botonRegCurso)
-                .addGap(14, 14, 14))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -217,10 +235,14 @@ public class RegistroCurso extends javax.swing.JFrame {
         String codigoCurso = inputCódigoCurso.getText();
         String gestion = inputGestión.getText();
         String descripcionCurso = inputDescripcionCurso.getText();
-        int id = 1;
+        String idCurso = inputIdCurso.getText();
+        int idCursoConvert = 0;
+        int codigoCursoConvert = 0;
+
         validacionNombre.setVisible(false);
         validacionCodigoCurso.setVisible(false);
         validacionGestiónCurso.setVisible(false);
+        validacionIDCurso.setVisible(false);
 
         boolean isValid = true;
 
@@ -257,6 +279,12 @@ public class RegistroCurso extends javax.swing.JFrame {
             isValid = false;
         }
 
+        if (!idCurso.matches("^[0-9 ]+$")) {
+            validacionIDCurso.setVisible(true);
+            validacionIDCurso.setText("El ID del curso solo "
+                    + "debe contener números.");
+            isValid = false;
+        }
         // Espacio reservado por si quiero validar descripción
         /*if (!descripcionCurso.matches("Patrón o expresión validar")) {
         JOptionPane.showMessageDialog(this, "Descripción inválida.");
@@ -281,31 +309,73 @@ public class RegistroCurso extends javax.swing.JFrame {
             isValid = false;
         }
 
+        if (idCurso.trim().isEmpty()) {
+            validacionIDCurso.setVisible(true);
+            validacionIDCurso.setText("ID es un campo obligatorio, no puede ser vacío.");
+            isValid = false;
+        }
+
         if (isValid) {
-            /* Si mis Inputs o entradas son válidas ejecuto mi acción 
-             para código futuro, p.e. cuando guarde o envie mis datos al servidor*/
-            PreparedStatement ps;
-            String sql;
-            //modelo.setNombreCoche(nombreCoche);
-            //modelo.setCilindradaCoche(cilindradaCoche);
+            idCursoConvert = Integer.parseInt(idCurso);
+            codigoCursoConvert = Integer.parseInt(codigoCurso);
             try {
-                conecction = myConecction.getConnection();
-                sql = "INSERT INTO CURSO(IDCURSO, NOMBRECURSO,"
-                        + " CODIGOCURSO, GESTION, DESCRIPCIONCURSO)"
-                        + " VALUES (?, ?, ?, ?, ?)";
-                ps = conecction.prepareStatement(sql);
-                ps.setInt(1, id);
-                ps.setString(2, nombreCurso);
-                ps.setString(3, codigoCurso);
-                ps.setString(4, gestion);
-                ps.setString(5, descripcionCurso);
-                ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Curso registrado correctamente");
-            } catch (SQLException e) {
+                if (validacionExistenciaEnBD(idCursoConvert)) {
+                    JOptionPane.showMessageDialog(null, "El ID ya existe. Ingrese un ID diferente.");
+                } else {
+                    /* Si mis Inputs o entradas son válidas ejecuto mi acción 
+                    para código futuro, p.e. cuando guarde o envie mis datos al servidor*/
+                    PreparedStatement ps;
+                    String sql;
+                    //modelo.setNombreCoche(nombreCoche);
+                    //modelo.setCilindradaCoche(cilindradaCoche);
+                    try {
+                        conecction = myConecction.getConnection();
+                        sql = "INSERT INTO CURSO(IDCURSO, NOMBRECURSO,"
+                                + " CODIGOCURSO, GESTION, DESCRIPCIONCURSO)"
+                                + " VALUES (?, ?, ?, ?, ?)";
+                        ps = conecction.prepareStatement(sql);
+                        ps.setInt(1, idCursoConvert);
+                        ps.setString(2, nombreCurso);
+                        ps.setInt(3, codigoCursoConvert);
+                        ps.setString(4, gestion);
+                        ps.setString(5, descripcionCurso);
+                        ps.executeUpdate();
+                        
+                        // Limpiando campos después de registrar un curso
+                        // ya que no tome en cuenta en un inicio esto
+                        inputNombreCurso.setText(""); 
+                        inputCódigoCurso.setText(""); 
+                        inputGestión.setText("");     
+                        inputDescripcionCurso.setText(""); 
+                        inputIdCurso.setText("");    
+                        JOptionPane.showMessageDialog(null, "Curso registrado correctamente");
+                                    
+                    } catch (SQLException e) {
+                        JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+                    }
+                }
+            } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
             }
+
         }
     }//GEN-LAST:event_botonRegCursoActionPerformed
+
+    private void inputIdCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputIdCursoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputIdCursoActionPerformed
+
+    // Añadiendo método de verificación de existencia de Id de Curso en la B.D.
+    private boolean validacionExistenciaEnBD(int idCursoConvert) throws SQLException {
+        String sql = "SELECT IDCURSO FROM CURSO WHERE IDCURSO = ?";
+        conecction = myConecction.getConnection();
+        PreparedStatement pst = conecction.prepareStatement(sql);
+        pst.setInt(1, idCursoConvert);
+        ResultSet resultSet = pst.executeQuery();
+        /* Si el id existe enn mi B.D. me devolverá true 
+        caso contrario false --v*/
+        return resultSet.next();
+    }
 
     /**
      * @param args the command line arguments
@@ -347,6 +417,7 @@ public class RegistroCurso extends javax.swing.JFrame {
     private javax.swing.JTextField inputCódigoCurso;
     private javax.swing.JTextField inputDescripcionCurso;
     private javax.swing.JTextField inputGestión;
+    private javax.swing.JTextField inputIdCurso;
     private javax.swing.JTextField inputNombreCurso;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -354,8 +425,10 @@ public class RegistroCurso extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel validacionCodigoCurso;
     private javax.swing.JLabel validacionGestiónCurso;
+    private javax.swing.JLabel validacionIDCurso;
     private javax.swing.JLabel validacionNombre;
     // End of variables declaration//GEN-END:variables
 }
