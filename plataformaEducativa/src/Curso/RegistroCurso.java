@@ -4,6 +4,12 @@
  */
 package Curso;
 
+import config.Conexion;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +27,8 @@ public class RegistroCurso extends javax.swing.JFrame {
         validacionCodigoCurso.setVisible(false);
         validacionGestiónCurso.setVisible(false);
     }
+    Conexion myConecction = new Conexion();
+    Connection conecction;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -202,16 +210,18 @@ public class RegistroCurso extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputDescripcionCursoActionPerformed
 
+
     private void botonRegCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegCursoActionPerformed
-        // Get the input values from the fields
+
         String nombreCurso = inputNombreCurso.getText();
         String codigoCurso = inputCódigoCurso.getText();
         String gestion = inputGestión.getText();
         String descripcionCurso = inputDescripcionCurso.getText();
+        int id = 1;
         validacionNombre.setVisible(false);
         validacionCodigoCurso.setVisible(false);
         validacionGestiónCurso.setVisible(false);
-        // Perform input validations
+
         boolean isValid = true;
 
         if (nombreCurso.isEmpty() || !nombreCurso.matches("^[a-zA-Z0-9 ]+$")) {
@@ -274,6 +284,26 @@ public class RegistroCurso extends javax.swing.JFrame {
         if (isValid) {
             /* Si mis Inputs o entradas son válidas ejecuto mi acción 
              para código futuro, p.e. cuando guarde o envie mis datos al servidor*/
+            PreparedStatement ps;
+            String sql;
+            //modelo.setNombreCoche(nombreCoche);
+            //modelo.setCilindradaCoche(cilindradaCoche);
+            try {
+                conecction = myConecction.getConnection();
+                sql = "INSERT INTO CURSO(IDCURSO, NOMBRECURSO,"
+                        + " CODIGOCURSO, GESTION, DESCRIPCIONCURSO)"
+                        + " VALUES (?, ?, ?, ?, ?)";
+                ps = conecction.prepareStatement(sql);
+                ps.setInt(1, id);
+                ps.setString(2, nombreCurso);
+                ps.setString(3, codigoCurso);
+                ps.setString(4, gestion);
+                ps.setString(5, descripcionCurso);
+                ps.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Curso registrado correctamente");
+            } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, "Error:" + e.getMessage());
+            }
         }
     }//GEN-LAST:event_botonRegCursoActionPerformed
 
