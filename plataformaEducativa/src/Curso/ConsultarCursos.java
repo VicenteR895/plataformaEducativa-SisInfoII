@@ -22,7 +22,10 @@ public class ConsultarCursos extends javax.swing.JFrame {
     public ConsultarCursos() {
         initComponents();
     }
-
+    Conexion myConecction = new Conexion();
+    Connection conecction;
+    Statement statement;
+    ResultSet resSet;
 
     //DefaultTableModel tableModel;
     /**
@@ -98,7 +101,29 @@ public class ConsultarCursos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void actualizarListaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_actualizarListaActionPerformed
+        DefaultTableModel tableModel = (DefaultTableModel) tablaCursosRegistrados.getModel();
+        tableModel.setRowCount(0); // Limpiando la tabla antes de insertar datos
 
+        String sql = "SELECT * FROM CURSO";
+        try {
+            conecction = myConecction.getConnection();
+            statement = conecction.createStatement();
+            resSet = statement.executeQuery(sql);
+
+            while (resSet.next()) {
+                Object[] CURSO = new Object[5];
+                CURSO[0] = resSet.getInt("IDCURSO");
+                CURSO[1] = resSet.getString("NOMBRECURSO");
+                CURSO[2] = resSet.getInt("CODIGOCURSO");
+                CURSO[3] = resSet.getString("GESTION");
+                CURSO[4] = resSet.getString("DESCRIPCIONCURSO");
+                tableModel.addRow(CURSO);
+            }
+            tablaCursosRegistrados.setModel(tableModel);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_actualizarListaActionPerformed
 
     /**
