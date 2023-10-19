@@ -23,6 +23,7 @@ public class RegistroCurso extends javax.swing.JFrame {
      */
     public RegistroCurso() {
         initComponents();
+        setLocationRelativeTo(null);
         validacionNombre.setVisible(false);
         validacionCodigoCurso.setVisible(false);
         validacionGestiónCurso.setVisible(false);

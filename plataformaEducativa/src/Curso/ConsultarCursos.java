@@ -21,6 +21,7 @@ public class ConsultarCursos extends javax.swing.JFrame {
      */
     public ConsultarCursos() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     Conexion myConecction = new Conexion();
     Connection conecction;
