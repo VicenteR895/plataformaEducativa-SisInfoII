@@ -1,6 +1,6 @@
 package estudiante;
 
-import profesor.*;
+
 import config.Conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
@@ -71,7 +71,7 @@ public class Estudiante extends javax.swing.JFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel1.setText("ID_PROFESOR");
+        jLabel1.setText("ID_ESTUDIANTE");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("APELLIDO:");
@@ -238,7 +238,7 @@ public class Estudiante extends javax.swing.JFrame {
         );
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel4.setText("GESTIONAR PROFESOR");
+        jLabel4.setText("GESTIONAR ESTUDIANTE");
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Operaciones"));
 
@@ -305,16 +305,17 @@ public class Estudiante extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(255, 255, 255)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(273, 273, 273))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,24 +432,24 @@ public class Estudiante extends javax.swing.JFrame {
     }
 
     void listar() {
-        String sql = "select * from PROFESOR";
+        String sql = "select * from ESTUDIANTE";
         try {
             con = cn.getConnection();
             st = con.createStatement();
             rs = st.executeQuery(sql);
-            Object[] PROFESOR = new Object[8];
+            Object[] ESTUDIANTE = new Object[8];
    
             model = (DefaultTableModel) TablaDatos.getModel();
             while (rs.next()) {
-                PROFESOR[0] = rs.getInt("IDPROFESOR");
-                PROFESOR[1] = rs.getString("NOMBREPROFESOR");
-                PROFESOR[2] = rs.getString("APELLIDOPROFESOR");
-                PROFESOR[3] = rs.getInt("CIPROFESOR");
-                PROFESOR[4] = rs.getString("CORREOPROFESOR");
-                PROFESOR[5] = rs.getString("DIRECCIONPROFESOR");
-                PROFESOR[6] = rs.getInt("TELEFONOPROFESOR");
-                PROFESOR[7] = rs.getDate("FECHANACIMIENTOPROFESOR");
-                model.addRow(PROFESOR);
+                ESTUDIANTE[0] = rs.getInt("IDESTUDIANTE");
+                ESTUDIANTE[1] = rs.getString("NOMBREESTUDIANTE");
+                ESTUDIANTE[2] = rs.getString("APELLIDOESTUDIANTE");
+                ESTUDIANTE[3] = rs.getInt("CIESTUDIANTE");
+                ESTUDIANTE[4] = rs.getString("CORREOESTUDIANTE");
+                ESTUDIANTE[5] = rs.getString("DIRECCIONESTUDIANTE");
+                ESTUDIANTE[6] = rs.getInt("TELEFONOESTUDIANTE");
+                ESTUDIANTE[7] = rs.getDate("FECHANACIMIENTOESTUDIANTE");
+                model.addRow(ESTUDIANTE);
             }
             TablaDatos.setModel(model);
 
@@ -480,7 +481,7 @@ public class Estudiante extends javax.swing.JFrame {
                 if (idAlreadyExists(id)) {
                     JOptionPane.showMessageDialog(null, "El ID ya existe. Ingrese un ID diferente.");
                 } else {
-                    String sql = "INSERT INTO PROFESOR(IDPROFESOR, NOMBREPROFESOR, APELLIDOPROFESOR, CIPROFESOR, CORREOPROFESOR, DIRECCIONPROFESOR, TELEFONOPROFESOR, FECHANACIMIENTOPROFESOR) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                    String sql = "INSERT INTO ESTUDIANTE(IDESTUDIANTE, NOMBREESTUDIANTE, APELLIDOESTUDIANTE, CIESTUDIANTE, CORREOESTUDIANTE, DIRECCIONESTUDIANTE, TELEFONOESTUDIANTE, FECHANACIMIENTOESTUDIANTE) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
                     con = cn.getConnection();
                     PreparedStatement pst = con.prepareStatement(sql);
@@ -495,7 +496,7 @@ public class Estudiante extends javax.swing.JFrame {
 
                     int rowsInserted = pst.executeUpdate();
                     if (rowsInserted > 0) {
-                        JOptionPane.showMessageDialog(null, "Profesor Registrado con Éxito");
+                        JOptionPane.showMessageDialog(null, "Estudiante Registrado con Éxito");
                         txtID.setText("");
                         txtNombre.setText("");
                         txtApellido.setText("");
@@ -520,7 +521,7 @@ public class Estudiante extends javax.swing.JFrame {
 
 // Método para verificar si el ID ya existe en la base de datos
 private boolean idAlreadyExists(int id) throws SQLException {
-    String sql = "SELECT IDPROFESOR FROM PROFESOR WHERE IDPROFESOR = ?";
+    String sql = "SELECT IDESTUDIANTE FROM ESTUDIANTE WHERE IDESTUDIANTE = ?";
     con = cn.getConnection();
     PreparedStatement pst = con.prepareStatement(sql);
     pst.setInt(1, id);
@@ -538,13 +539,13 @@ boolean isValidEmail(String email) {
     void Modificar() {
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
-        String sql = "update PROFESOR set apellidoProfesor='" + apellido + "',nombreProfesor='" + nombre + "' where id=" + id;
+        String sql = "update ESTUDIANTE set apellidoEstudiante='" + apellido + "',nombreEstudiante='" + nombre + "' where id=" + id;
         try {
             if (apellido != null || nombre != null) {
                 con = cn.getConnection();
                 st = con.createStatement();
                 st.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null, "Profesor Modificado");
+                JOptionPane.showMessageDialog(null, "Estudiante Modificado");
                 limpiarTabla(model);
                 
             } else {
@@ -557,16 +558,16 @@ boolean isValidEmail(String email) {
     }
 
     void Eliminar() {
-        String sql = "delete from PROFESOR where id=" + id;        
+        String sql = "delete from ESTUDIANTE where id=" + id;        
         int fila = TablaDatos.getSelectedRow();
         if (fila < 0) {
-            JOptionPane.showMessageDialog(null,"Profesor no Seleccionado");
+            JOptionPane.showMessageDialog(null,"Estudiante no Seleccionado");
         } else {
                 try {
                     con = cn.getConnection();
                     st = con.createStatement();
                     st.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Profesor Eliminado");
+                    JOptionPane.showMessageDialog(null, "Estudiante Eliminado");
                     limpiarTabla(model);
                     
                 } catch (Exception e) {
