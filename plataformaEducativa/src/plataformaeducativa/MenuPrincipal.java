@@ -4,7 +4,7 @@
  */
 package plataformaeducativa;
 
-import profesor.Principal;
+import profesor.Profesor;
 
 /**
  *
@@ -112,7 +112,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_registrarEstudianteActionPerformed
 
     private void registrarProfesorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarProfesorActionPerformed
-        new Principal().setVisible(true);
+        new Profesor().setVisible(true);
     }//GEN-LAST:event_registrarProfesorActionPerformed
 
     private void registrarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarCursoActionPerformed

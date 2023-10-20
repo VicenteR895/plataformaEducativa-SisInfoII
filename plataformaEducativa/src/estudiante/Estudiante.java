@@ -537,51 +537,17 @@ boolean isValidEmail(String email) {
 }
 
     void Modificar() {
-        String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        String sql = "update ESTUDIANTE set apellidoEstudiante='" + apellido + "',nombreEstudiante='" + nombre + "' where id=" + id;
-        try {
-            if (apellido != null || nombre != null) {
-                con = cn.getConnection();
-                st = con.createStatement();
-                st.executeUpdate(sql);
-                JOptionPane.showMessageDialog(null, "Estudiante Modificado");
-                limpiarTabla(model);
-                
-            } else {
-                JOptionPane.showMessageDialog(null, "Error...!!!");
-            }
-
-        } catch (Exception e) {
-        }
+        
 
     }
 
     void Eliminar() {
-        String sql = "delete from ESTUDIANTE where id=" + id;        
-        int fila = TablaDatos.getSelectedRow();
-        if (fila < 0) {
-            JOptionPane.showMessageDialog(null,"Estudiante no Seleccionado");
-        } else {
-                try {
-                    con = cn.getConnection();
-                    st = con.createStatement();
-                    st.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Estudiante Eliminado");
-                    limpiarTabla(model);
-                    
-                } catch (Exception e) {
-                }
-               
-        }
+        
 
     }
 
     void nuevo() {
-        //txtID.setText("");
-        //txtApellido.setText("");
-        //txtNombre.setText("");
-        //txtApellido.requestFocus();
+        
     }
 
     void limpiarTabla(DefaultTableModel model) {

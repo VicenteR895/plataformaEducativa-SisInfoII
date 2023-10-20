@@ -5,7 +5,7 @@ import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class Principal extends javax.swing.JFrame {
+public class Profesor extends javax.swing.JFrame {
 
     Conexion cn = new Conexion();
     Connection con;
@@ -14,7 +14,7 @@ public class Principal extends javax.swing.JFrame {
     ResultSet rs;
     int id = 0;
 
-    public Principal() {
+    public Profesor() {
         initComponents();
         setLocationRelativeTo(null);
         listar();
@@ -410,20 +410,21 @@ public class Principal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Profesor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Principal().setVisible(true);
+                new Profesor().setVisible(true);
             }
         });
     }
@@ -555,30 +556,12 @@ boolean isValidEmail(String email) {
     }
 
     void Eliminar() {
-        String sql = "delete from PROFESOR where id=" + id;        
-        int fila = TablaDatos.getSelectedRow();
-        if (fila < 0) {
-            JOptionPane.showMessageDialog(null,"Profesor no Seleccionado");
-        } else {
-                try {
-                    con = cn.getConnection();
-                    st = con.createStatement();
-                    st.executeUpdate(sql);
-                    JOptionPane.showMessageDialog(null, "Profesor Eliminado");
-                    limpiarTabla(model);
-                    
-                } catch (Exception e) {
-                }
-               
-        }
+        
 
     }
 
     void nuevo() {
-        //txtID.setText("");
-        //txtApellido.setText("");
-        //txtNombre.setText("");
-        //txtApellido.requestFocus();
+        
     }
 
     void limpiarTabla(DefaultTableModel model) {
